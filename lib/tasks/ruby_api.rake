@@ -6,23 +6,31 @@ ENV['RAILS_ENV'] ||= "development"
 namespace :ruby_api do
   desc "Import the Ruby API docs"
   task :import => :environment do
-    #Document.delete_all "source = 'Ruby API'"
+  
+    counter = 0
+    puts "Removing existing docs" 
+    Document.find_all_by_source("Ruby_API").each do |doc|
+       puts "#{counter += 1}"
+       doc.solr_destroy
+       doc.delete
+    end
+
     counter = 0
     Dir['public/ruby_api/**/*.html' ].each do |file|
       doc = Hpricot(open(file))
       title = (doc/"title" ).text
       category = ''
       if title =~ /\AClass\: /
-        category = 'Class'
+        category = 'API'
       elsif title =~ /\AModule\: /
-        category = 'Module'
+        category = 'API'
       elsif title =~ /\AFile\: /
-        category = 'File'
+        category = 'API'
       else
         if file.match(/[.]src/)
           category = 'Source'
         else
-          category = 'Unknown'
+          category = 'Documents and Guides'
         end
       end
       abstract = (doc/"#description").inner_html
