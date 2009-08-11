@@ -1,0 +1,30 @@
+<div id="searchstatus">
+
+<p class="right">
+ Results
+ <b><%= @paginator.current_start_record %></b> - <b><%= @paginator.current_end_record %></b>
+ of 
+ <b><%= @paginator.total_records %></b>
+ for
+ <b><%= h params[:q] %>.</b>
+(<b><%= @elapsed %></b> seconds) 
+</p>
+</div>
+
+<div id="searchcategory">
+ <p>
+  By <i>Category</i>
+   <%= render :partial => 'facet_results_banner',
+              :locals => {:browse => @browse_category,
+                          :facet => 'category',
+                          :facets => @results.facets['facet_fields']['category_facet']}  %>
+ </p>
+ <p>
+  By <i>Source</i>
+   <%= render :partial => 'facet_results_banner',
+              :locals => {:browse => @browse_source,
+                          :facet => 'source',
+                          :facets => @results.facets['facet_fields']['source_facet']}  %>
+ 
+ </p>
+</div>

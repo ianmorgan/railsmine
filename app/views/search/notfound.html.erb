@@ -1,0 +1,4 @@
+<h2>Nothing found for <%= h params[:q] %></h2>
+<form name="search" action="/search/search">
+  Search for: <input type="text" name="q" value="<%=h params[:q]%>"> <input type="submit" value="Find"> 
+</form>

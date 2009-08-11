@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Rails Mine - <%= controller.action_name %></title>
+  <%= stylesheet_link_tag 'scaffold' %>
+  <%= stylesheet_link_tag 'solr' %>
+</head>
+<body>
+<%= javascript_include_tag "jquery-1.2.6.js" %>
+<%= image_tag('/images/rails.png', :alt=>'Ruby on Rails') %>
+
+<div id="gbar"><nobr>
+   <a class="gb1" href="http://www.rubyonrails.org">Ruby on Rails</a> 
+   <%= link_to "About", :controller => 'search', :action => 'about' %>
+</nobr></div>
+
+<p style="color: green"><%= flash[:notice] %></p>
+
+<%= yield  %>
+
+</body>
+</html>
+
+

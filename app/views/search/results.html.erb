@@ -1,0 +1,50 @@
+<script type="text/javascript">
+      $(document).ready(function(){
+      
+        <% for d in @results.docs %>
+ 
+	$("#<%=d.id%>").click(function(event){
+	alert ('<%=d.file_path.gsub('public','')%>');
+	alert ("<%= url_for  d %>");
+          $("#ajax").load ('<%= url_for  d %>');
+          //$("#ajax").html ('<%=d.id%>'); 
+          //$("#ajax").load ('<%="http://localhost:3000/search/test"%>');
+         
+	});
+        <% end %>
+      });
+</script>
+
+
+<form name="search" action="/search/search">
+  Search for: <input type="text" name="q" value="<%=h params[:q]%>"> <input type="submit" value="Find"> 
+</form>
+
+<%= render :partial => 'search_results_banner' %>
+<% if @results && @results.total > 0 %>
+  
+  <% for document in @results.docs %>
+    <div class="resultline">
+       <a class="resultlink" href="<%= "http://localhost:3000/" + document.file_path.gsub('public','') %>"><%=document.title %></a> 
+       
+       <div class="abstract">
+         <%= displayable_abstract document %> 
+       </div>
+       
+       
+       <!--
+       <div id="<%=document.id%>>ajax</div>   <td><%= link_to 'Show', document %>  <a href="<%= document.file_path.gsub('public','')%>">open</a>   <div id="<%=document.id%>">ajax</td>
+       -->
+     </div>
+  <% end -%>
+  
+<% else %>
+  <h2>No results for <%= h params[:q] %></h2>
+<% end %>
+
+<% (1..@results.total/20+1).each do |page| %>
+  <a href='<%="/search/search/?q=#{params[:q]}&page=#{page}&browse_category=#{@browse_category}"%>'><%="#{page}"%></a> 
+<% end %> 
+
+<div id="ajax"></div>
+

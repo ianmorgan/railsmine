@@ -1,0 +1,242 @@
+/* CSS Document */
+
+#footer {
+    padding-top: 40px;
+}
+  
+
+#anzlogo {
+   background: url(images/anz_header.png) no-repeat top left;
+   /*height: 200px;*/
+   /*padding-top: 100px;*/
+   width: 206px;
+   height: 237px;
+
+   
+}
+
+#productlogo {
+   clear: both;
+   padding-right: 120px;
+   padding-left: 120px;
+   background: url(images/productandsecure_banner.png) no-repeat top left;
+   padding-top: 300px;
+}
+
+.links li {
+	margin-left: -35px;
+	padding-left: 0px;
+	list-style: none;
+	margin-top: 5px;
+	text-decoration: none;
+	
+}
+
+.prevbutton {
+  width: 80px;
+  height: 22px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  /*margin-left: 450px;*/
+  background: transparent url(/images/anz/buttonPrev.png) no-repeat center top;
+  text-indent: -1000em;
+  cursor: pointer; /* hand-shaped cursor */
+  cursor: hand; /* for IE 5.x */
+}
+
+
+.nextbutton {
+  width: 80px;
+  height: 22px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  /*margin-left: 550px;*/
+  background: transparent url(/images/anz/buttonNext.png) no-repeat center top;
+  text-indent: -1000em;
+  cursor: pointer; /* hand-shaped cursor */
+  cursor: hand; /* for IE 5.x */
+}
+
+.editbutton {
+  width: 80px;
+  height: 22px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  /*margin-left: 550px;*/
+  background: transparent url(/images/anz/buttonEdit.png) no-repeat center top;
+  text-indent: -1000em;
+  cursor: pointer; /* hand-shaped cursor */
+  cursor: hand; /* for IE 5.x */
+}
+
+
+.radiobuttons fieldset {
+    border: 0px;
+    visibilty:   hidden;
+    height: 20px
+}
+
+.radiobuttons .button { 
+    position: relative;
+    top: -25px;
+    position: relative;
+    left: 300px;
+    display:inline-table;
+    height: 30px"
+}
+
+/* basic style for a number of form items layed out vertically */
+.vform li {
+	margin-left: -35px;
+	padding-left: 0px;
+	list-style: none;
+	margin-top: 5px;
+	text-decoration: none;
+}
+
+.fieldWithErrors {
+  color: red;
+  display: inline;
+}
+
+
+.mandatory  {
+    padding-right: 5px;
+    content: "xxx"; 
+    color: red;
+}
+
+
+.optional {
+    padding-right: 14px;
+}
+
+.lableleft label{
+    width: 120px;
+    display: inline-table;
+}
+
+.lableleftwide label{
+    width: 300px;
+    display: inline-table;
+}
+
+.reviewlabel {
+    width: 150px;
+    display: inline-table; 
+}
+
+
+.reviewitems label {
+    width: 150px;
+    display: inline-table; 
+}
+
+.reviewitems span {
+    font-weight: bold;
+     display: inline-table;
+}
+
+
+legend{
+    width: 120px;
+    padding-left: 4px;
+    display: inline-table;
+}
+
+
+.vform div{
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.formitems {
+    padding-left: 120px;
+}
+
+
+
+#searchstatus {
+   margin-top:0;
+   padding:0.1em;
+}
+#bsf, #searchstatus {
+   margin:11px 0;
+}
+
+/* FAD8DB */
+
+/* F5B1BA */
+#bsf, #searchstatus, .blk {
+   background:#FAD8DB none repeat scroll 0 0;
+   border-top:1px solid #FF0000;
+}
+
+#searchstatus, .clr {
+clear:both;
+}
+
+#searchstatus .right{
+   margin:0.1em 0;
+padding:0.2em;
+text-align:right;
+white-space:nowrap;
+}
+
+.resultline {
+ margin-top: 10px;
+}
+
+#searchcategory p{
+ margin:0.1em 0;
+ padding:0.2em;
+ text-align:left;
+ white-space:nowrap;   
+}
+
+
+.resultlink {
+ margin-left: 2px;
+ margin:0.1em 0;
+ padding:0.2em;
+ 		
+}
+
+.abstract {
+   margin-left: 2px;
+   margin-right: 20px;
+   background:rgb(252,242,243) none repeat scroll 0 0;
+   border:1px dotted #999999;
+   padding:0.3em 1.3em;
+}
+
+
+
+/* copied from Google */
+element.style {
+right:0;
+}
+.gbh {
+height:0;
+position:absolute;
+top:24px;
+width:100%;
+}
+.gbh, .gbd {
+border-top:1px solid #C9D7F1;
+font-size:1px;
+}
+
+.gb1, .gb3 {
+height:22px;
+margin-right:0.5em;
+vertical-align:top;
+}
+
+div#gbar 
+#gbar, #guser {
+font-size:13px;
+}

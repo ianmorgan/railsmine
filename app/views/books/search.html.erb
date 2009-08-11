@@ -1,0 +1,19 @@
+
+
+<% if @results %>
+<!-- #START:start -->
+<h1>Search results for '<%= h params[:q] %>'</h1>
+
+<strong>Publisher:</strong> 
+<% @publisher_facet.each do |name, count| %>
+  <%= name %> (<%= count %>)
+<% end-%>
+<ul>
+
+  
+<% for book in @results.docs %>
+  <li><%=book.title %></li>
+<% end -%>
+</ul>
+<!-- #START:end -->  
+<% end %>

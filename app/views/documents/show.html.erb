@@ -1,0 +1,32 @@
+<p>
+  <b>Title:</b>
+  <%=h @document.title %>
+</p>
+
+<p>
+  <b>File path:</b>
+  <%=h @document.file_path %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%=h @document.category %>
+</p>
+
+<p>
+  <b>Source:</b>
+  <%=h @document.source%><br>
+  <%=h @document.path_to_source %>
+
+</p>
+
+<p>
+  <b>Content:</b>
+  <div style="border-color:red; border-width:2px; border-style:solid">
+    <%=@document.content %>
+  </div>
+</p>
+
+
+<%= link_to 'Edit', edit_document_path(@document) %> |
+<%= link_to 'Back', documents_path %>
