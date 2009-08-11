@@ -22,7 +22,11 @@ end
 def getPage(path)
   begin
     uri = @site_uri.clone
-    uri.path = uri.path + path if path != "/"
+    if starts_with_slash(path)
+       uri.path = path 
+    else
+       uri.path = uri.path + '/' + path
+    end
     puts "getting #{uri}"
     response = Net::HTTP.get_response(uri)
   rescue Exception
@@ -43,6 +47,10 @@ def queueLocalLinks(html)
       addPath(uri.path)
      end
   end
+end
+
+def starts_with_slash(path)
+  path[0,1] == '/'
 end
 
 def crawlSite()
