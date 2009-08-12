@@ -25,7 +25,7 @@
   
   <% for document in @results.docs %>
     <div class="resultline">
-       <a class="resultlink" href="<%= "http://localhost:3000/" + document.file_path.gsub('public','') %>"><%=document.title %></a> 
+       <a class="resultlink" href="<%= document.url %>"><%=document.title %></a> 
        
        <div class="abstract">
          <%= displayable_abstract document %> 

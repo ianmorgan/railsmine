@@ -1,13 +1,14 @@
  <% if params[:facet] == facet %>
-      <%= browse %> <strong> <%= params[:browse].gsub("_"," ") %> </strong><a href='<%="/search/search/?q=#{params[:q]}"%>'> 
+      <%= browse %> <strong> <%= displayable_facet_name(facet,params[:browse]) %> </strong><a href='<%="/search/search/?q=#{params[:q]}"%>'> 
   	     All <%= facet.pluralize.capitalize %> 
       </a> 
-  <% else %>
+ <% else %>
       <% facets.each do |name, count| %>
          <a href='<%="/search/search/?q=#{params[:q]}&facet=#{facet}&browse=#{name}"%>'> 
-	    <%= name.gsub("_"," ") %> 
+	    <%= displayable_facet_name(facet,name)  %> 
 	  </a> (<%= count %>)
       <% end-%>  
-      
-     
-  <% end %>
+ <% end %>
+ 
+ 
+

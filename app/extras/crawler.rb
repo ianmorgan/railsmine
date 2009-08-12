@@ -19,14 +19,8 @@ def addPath(path)
    @visited[path] = false
 end
 
-def getPage(path)
+def getPage(uri)
   begin
-    uri = @site_uri.clone
-    if starts_with_slash(path)
-       uri.path = path 
-    else
-       uri.path = uri.path + '/' + path
-    end
     puts "getting #{uri}"
     response = Net::HTTP.get_response(uri)
   rescue Exception
@@ -40,7 +34,6 @@ def queueLocalLinks(html)
   doc = Hpricot(html)
   (doc/"a").each do |link| 
      href = link.attributes['href']
-     puts href
      uri = URI.parse(href)
      if !@visited.has_key?(uri.path) and
       (uri.relative? or uri.host == @site_uri.host)
@@ -53,11 +46,22 @@ def starts_with_slash(path)
   path[0,1] == '/'
 end
 
+def full_uri(path) 
+    uri = @site_uri.clone
+    if starts_with_slash(path)
+       uri.path = path 
+    else
+       uri.path = uri.path + '/' + path
+    end
+    uri
+end
+
 def crawlSite()
    while (!@queue.empty?) 
      uri = @queue.shift
-     page = getPage(uri)
-     yield uri, page
+     expanded_uri = full_uri(uri)
+     page = getPage(expanded_uri)
+     yield expanded_uri, page
      queueLocalLinks(page)
      @visited[uri] = true
   end
