@@ -10,7 +10,7 @@ namespace :rails_guides do
     
     counter = 0
     puts "Removing existing docs" 
-    Document.find_all_by_source("Rails_Guides").each do |doc|
+    Document.find_all_by_source("rails_guides").each do |doc|
        puts "#{counter += 1}"
        doc.solr_destroy
        doc.delete
@@ -32,9 +32,14 @@ namespace :rails_guides do
       Document.create!(:title => title,
         :category => category,
         :file_path => 'unknown',
-        :source => "Rails_Guides",
+        :url => url, 
+        :source => "rails_guides",
         :abstract => abstract,
         :content => page)
+      end
+      
+      if counter > 5
+        exit
       end
    end
 end

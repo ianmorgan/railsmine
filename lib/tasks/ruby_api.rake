@@ -9,7 +9,7 @@ namespace :ruby_api do
   
     counter = 0
     puts "Removing existing docs" 
-    Document.find_all_by_source("Ruby_API").each do |doc|
+    Document.find_all_by_source("ruby_api").each do |doc|
        puts "#{counter += 1}"
        doc.solr_destroy
        doc.delete
@@ -21,16 +21,16 @@ namespace :ruby_api do
       title = (doc/"title" ).text
       category = ''
       if title =~ /\AClass\: /
-        category = 'API'
+        category = 'api'
       elsif title =~ /\AModule\: /
-        category = 'API'
+        category = 'api'
       elsif title =~ /\AFile\: /
-        category = 'API'
+        category = 'api'
       else
         if file.match(/[.]src/)
-          category = 'Source'
+          category = 'src'
         else
-          category = 'Documents and Guides'
+          category = 'doco'
         end
       end
       abstract = (doc/"#description").inner_html
@@ -40,7 +40,8 @@ namespace :ruby_api do
         Document.create!(:title => title,
            :category => category,
            :file_path => file,
-           :source => "Ruby_API",
+           :url => file.gsub('public',''),
+           :source => "ruby_api",
            :abstract => abstract,
            :content => File.read(file))
       rescue
