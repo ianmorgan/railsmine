@@ -61,7 +61,7 @@ def crawlSite()
      uri = @queue.shift
      expanded_uri = full_uri(uri)
      page = getPage(expanded_uri)
-     yield expanded_uri, page
+     yield expanded_uri.to_s, page
      queueLocalLinks(page)
      @visited[uri] = true
   end
