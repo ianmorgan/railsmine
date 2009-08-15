@@ -1,6 +1,7 @@
-
+<% content_for :search_history_content do %>
+  <%= render :partial => 'partials/search_history' %>
+<% end %>
 
 <form name="search" action="/search/search">
   <input type="text" name="q" value="<%=h params[:q]%>"> <input type="submit" value="Find"> 
 </form>
-

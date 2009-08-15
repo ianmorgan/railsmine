@@ -16,9 +16,14 @@
 </script>
 
 
+
 <form name="search" action="/search/search">
   Search for: <input type="text" name="q" value="<%=h params[:q]%>"> <input type="submit" value="Find"> 
 </form>
+
+<% content_for :search_history_content do %>
+  <%= render :partial => 'partials/search_history' %>
+<% end %>
 
 <%= render :partial => 'search_results_banner' %>
 <% if @results && @results.total > 0 %>

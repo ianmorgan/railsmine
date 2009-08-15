@@ -1,5 +1,8 @@
+#include 'UrlWriter'
+
 class SearchController < ApplicationController
-  
+  before_filter :check_visitor_history
+
   layout "public"
   
   def home
@@ -11,6 +14,8 @@ class SearchController < ApplicationController
   end
   
   def search
+    store_in_visitor_history
+    
     started = Time.now
     @page = determine_page 
     
@@ -55,5 +60,49 @@ class SearchController < ApplicationController
   end
   
   def do_search
+  end
+  
+  def set_user_cookie
+  
+   mycookie = cookies[:railsmine_history] 
+   puts mycookie 
+   cookies[:railsmine_history] = {
+     :value => 'a yummy cookie',
+     :expires => 1.year.from_now
+   }
+
+  end
+  
+  def check_visitor_history
+     visitor_cookie = cookies[:railsmine_visitor]
+     if visitor_cookie && visitor_cookie.length > 0
+       @site_visitor = SiteVisitor.find_by_cookie(visitor_cookie)
+       @search_history = @site_visitor.site_visitor_history.latest_5_searches
+     else
+       visitor_cookie = SiteVisitor.generate_unique_cookie 
+       cookies[:railsmine_visitor] = {
+          :value => visitor_cookie,
+          :expires => 1.year.from_now
+        }
+        @site_visitor = SiteVisitor.new(:cookie => visitor_cookie)
+        @site_visitor.save
+        @search_history = Array.new
+     end
+  
+  end
+  
+  def store_in_visitor_history 
+    url = url_for(:controller => 'search',
+          :action => 'search',
+          :q => params[:q],
+          :only_path => true)
+          
+    @site_visitor.site_visitor_history.new(
+    	:displayable_string => params[:q],
+    	:url => url
+      ).save
+      
+    @search_history = @site_visitor.site_visitor_history.latest_5_searches
+
   end
 end

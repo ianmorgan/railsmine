@@ -1,0 +1,8 @@
+<div class="search_history">
+  <strong>Search History</strong><br>
+  <ul>
+  <% for history in @search_history  %>
+    <li><a href="<%=history.url%>"><%=history.displayable_string %></a></li>
+  <% end %>
+  </ul>
+</div>

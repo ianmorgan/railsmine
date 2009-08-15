@@ -10,16 +10,14 @@
 </head>
 <body>
 <%= javascript_include_tag "jquery-1.2.6.js" %>
-<%= image_tag('/images/rails.png', :alt=>'Ruby on Rails') %>
 
-<div id="gbar"><nobr>
-   <a class="gb1" href="http://www.rubyonrails.org">Ruby on Rails</a> 
-   <%= link_to "About", :controller => 'search', :action => 'about' %>
-</nobr></div>
+<%= render :partial => 'partials/header' %>
 
 <p style="color: green"><%= flash[:notice] %></p>
 
+<%= yield  :search_history_content %>
 <%= yield  %>
+
 
 </body>
 </html>
