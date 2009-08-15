@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090811140334) do
+ActiveRecord::Schema.define(:version => 20090814070818) do
 
   create_table "books", :force => true do |t|
     t.string "title"
@@ -38,6 +38,22 @@ ActiveRecord::Schema.define(:version => 20090811140334) do
     t.string   "source"
     t.text     "abstract"
     t.string   "url"
+  end
+
+  create_table "site_visitor_histories", :force => true do |t|
+    t.integer  "site_visitor_id"
+    t.string   "displayable_string"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "site_visitors", :force => true do |t|
+    t.string   "cookie"
+    t.datetime "first_visit"
+    t.datetime "latest_visit"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
