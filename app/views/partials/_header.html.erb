@@ -1,5 +1,7 @@
-<%= image_tag('/images/rails.png', :alt=>'Ruby on Rails') %>
+
 <div id="gbar"><nobr>
+   <%= image_tag('/images/rails.png', :alt=>'Ruby on Rails') %>
    <a class="gb1" href="http://www.rubyonrails.org">Ruby on Rails</a> 
-   <%= link_to "About", :controller => 'search', :action => 'about' %>
+   <a class="gb1" href="http://lucene.apache.org/solr/">SOLR Powered</a>
+   <%= link_to "About", {:controller => 'search', :action => 'about'}, {:class =>"gb1"} %>
 </nobr></div>

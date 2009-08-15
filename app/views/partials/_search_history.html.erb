@@ -1,8 +1,10 @@
 <div class="search_history">
-  <strong>Search History</strong><br>
-  <ul>
+  <div class="header">Last <%=@search_history.size%> searches</div>
+  
   <% for history in @search_history  %>
-    <li><a href="<%=history.url%>"><%=history.displayable_string %></a></li>
+    <div class="item">
+      <a href="<%=history.url%>"><%=history.displayable_string %></a> (<%=distance_of_time_in_words_to_now(history.created_at)%> ago) 
+     </div>
   <% end %>
   </ul>
 </div>
