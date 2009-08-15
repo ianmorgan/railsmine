@@ -23,11 +23,10 @@ namespace :rails_guides do
     
       doc = Hpricot(page)
       title = (doc/"title" ).text
-      category = 'Documents and Guides'
+      category = 'doco'
     
       abstract = (doc/"#feature .wrapper  p").inner_html
-      #puts abstract
-
+    
       puts "Importing #{counter += 1}:#{url} as #{category}"
       Document.create!(:title => title,
         :category => category,
@@ -38,8 +37,5 @@ namespace :rails_guides do
         :content => page)
       end
       
-      if counter > 5
-        exit
-      end
    end
 end
