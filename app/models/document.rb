@@ -1,5 +1,5 @@
 class Document < ActiveRecord::Base
-  acts_as_solr :facets => [:category, :source]
+  acts_as_solr :facets => [:category, :source, :is_source_code]
   
   def path_to_source
     "/" + source.downcase.gsub(' ', '_').gsub('public','')
@@ -21,5 +21,15 @@ class Document < ActiveRecord::Base
          'ruby_api' => 'Ruby API',
          'rails_guides' => 'Rails Guides'}[source]
    end
+   
+   
+  def Document.testing  
+    Document.find_by_solr("rails", 
+       :facets => {:zeros => false, 
+                   :sort => true,
+                   :aaquery => "source:api",
+                   :browse => ["is_source_code:Y"],
+                   :fields => [:category, :source]})
+  end
   
 end

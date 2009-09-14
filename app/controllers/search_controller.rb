@@ -21,15 +21,20 @@ class SearchController < ApplicationController
     
     if params[:facet]
       @results = Document.find_by_solr(
-           params[:q], 
+           params[:q] , 
            :facets => {:fields => [:category, :source] ,
-           :browse => ["#{params[:facet]}:#{params[:browse]}"] },
+                       :browse => ["#{params[:facet]}:#{params[:browse]}","is_source_code:N"],
+                       :zeros => false, 
+                       :sort => true },
            :offset => (@page-1)*20, 
            :limit => 20)
     else
       @results = Document.find_by_solr(
-           params[:q], 
-           :facets => {:fields => [:category, :source] },
+           params[:q] , 
+           :facets => {:fields => [:category, :source], 
+                       :browse => ["is_source_code:N"],
+                       :zeros => false, 
+                       :sort => true },
            :offset => (@page-1)*20, 
            :limit => 20)
     end

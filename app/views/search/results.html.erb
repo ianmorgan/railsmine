@@ -31,7 +31,7 @@
   
   <% for document in @results.docs %>
     <div class="resultline">
-       <a class="resultlink" href="<%= document.url %>"><%=document.title %></a> 
+       <b><%=Document.source_full_name(document.source)%></b> <a class="resultlink" href="<%= document.url %>"><%=document.title %></a> 
        
        <div class="abstract">
          <%= displayable_abstract document %> 
