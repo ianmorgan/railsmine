@@ -20,6 +20,7 @@ namespace :ruby_api do
       doc = Hpricot(open(file))
       title = (doc/"title" ).text
       category = ''
+      is_source_code = 'N'
       if title =~ /\AClass\: /
         category = 'api'
       elsif title =~ /\AModule\: /
@@ -29,6 +30,7 @@ namespace :ruby_api do
       else
         if file.match(/[.]src/)
           category = 'src'
+          is_source_code = 'Y'
         else
           category = 'doco'
         end
@@ -42,6 +44,7 @@ namespace :ruby_api do
            :file_path => file,
            :url => file.gsub('public',''),
            :source => "ruby_api",
+           :is_source_code => is_source_code,
            :abstract => abstract,
            :content => File.read(file))
       rescue

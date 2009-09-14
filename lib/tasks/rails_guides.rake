@@ -33,6 +33,7 @@ namespace :rails_guides do
         :file_path => 'unknown',
         :url => url, 
         :source => "rails_guides",
+        :is_source_code => 'N',
         :abstract => abstract,
         :content => page)
       end

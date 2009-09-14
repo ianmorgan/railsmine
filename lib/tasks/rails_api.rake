@@ -38,6 +38,7 @@ namespace :rails_api do
         :file_path => file,
         :url => file.gsub('public',''),
         :source => "rails_api",
+        :is_source_code => 'N',
         :abstract => abstract,
         :content => File.read(file))
       end
