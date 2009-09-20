@@ -11,7 +11,7 @@ module DocumentsHelper
   #todo - not polymorphic!
   def displayable_facet_name(facet_name, facet_value)
     if facet_name == 'category' 
-       Document.category_full_name(facet_value)    
+       Document.category_full_name(facet_value)
     else
        Document.source_full_name(facet_value)      
     end

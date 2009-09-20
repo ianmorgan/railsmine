@@ -20,23 +20,15 @@ class SearchController < ApplicationController
     @page = determine_page 
     
     if params[:facet]
-      @results = Document.find_by_solr(
-           params[:q] , 
-           :facets => {:fields => [:category, :source] ,
-                       :browse => ["#{params[:facet]}:#{params[:browse]}","is_source_code:N"],
-                       :zeros => false, 
-                       :sort => true },
-           :offset => (@page-1)*20, 
-           :limit => 20)
+      @results = Document.search(
+            params[:q] , 
+            params[:facet],
+            @page)
     else
-      @results = Document.find_by_solr(
-           params[:q] , 
-           :facets => {:fields => [:category, :source], 
-                       :browse => ["is_source_code:N"],
-                       :zeros => false, 
-                       :sort => true },
-           :offset => (@page-1)*20, 
-           :limit => 20)
+      @results = Document.search(
+            params[:q] , 
+            "",
+            @page)
     end
     finished = Time.now
     
@@ -70,7 +62,6 @@ class SearchController < ApplicationController
   def set_user_cookie
   
    mycookie = cookies[:railsmine_history] 
-   puts mycookie 
    cookies[:railsmine_history] = {
      :value => 'a yummy cookie',
      :expires => 1.year.from_now

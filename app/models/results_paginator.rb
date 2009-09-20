@@ -1,6 +1,6 @@
 class ResultsPaginator
   attr_accessor :page
-  RESULTS_PER_PAGE = 20
+  RESULTS_PER_PAGE = 5
   
   def initialize(results)
     @results = results

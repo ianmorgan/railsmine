@@ -48,7 +48,7 @@
   <h2>No results for <%= h params[:q] %></h2>
 <% end %>
 
-<% (1..@results.total/20+1).each do |page| %>
+<% (1..@results.total/5+1).each do |page| %>
   <a href='<%="/search/search/?q=#{params[:q]}&page=#{page}&browse_category=#{@browse_category}"%>'><%="#{page}"%></a> 
 <% end %> 
 
