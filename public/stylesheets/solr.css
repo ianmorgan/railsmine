@@ -80,6 +80,12 @@ white-space:nowrap;
    margin-bottom: 3px;
 }
 
+.selected_facet {
+ border: 1px solid red;
+ background: rgb(252,242,243) none repeat scroll 0 0;
+ margin-right: 5px;
+ padding: 2px;
+}
 
 /* copied from Google */
 element.style {
