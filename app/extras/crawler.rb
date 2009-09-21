@@ -5,8 +5,9 @@ require 'open-uri'
 
 
 class SiteCrawler
-  def initialize(url)
+  def initialize(url, check_url_block = nil)
     @site_uri = URI.parse(url)
+    @check_url_block = check_url_block
     #@site_uri.path = "/" if @site_uri.path == ""
     @visited = Hash.new
     @queue = Array.new
@@ -15,8 +16,16 @@ class SiteCrawler
   end
 
   def addPath(path)
-    @queue.push path
-    @visited[path] = false
+    crawl_this_page = true
+    if @check_url_block
+      puts "checking: #{full_uri(path)}"
+      crawl_this_page = @check_url_block.call(full_uri(path))
+      puts "skipping page" unless crawl_this_page
+    end
+    if crawl_this_page
+      @queue.push path
+      @visited[path] = false
+    end
   end
 
   def getPage(uri)

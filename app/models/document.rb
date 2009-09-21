@@ -22,6 +22,7 @@ class Document < ActiveRecord::Base
         {'rails_api' => 'Rails API',
          'ruby_api' => 'Ruby API',
          'railscasts' => 'Railscasts',
+         'railswiki' => 'Rails Wiki',
          'rails_guides' => 'Rails Guides'}[source]
   end
   
