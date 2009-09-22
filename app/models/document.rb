@@ -27,7 +27,7 @@ class Document < ActiveRecord::Base
   end
 
   def Document.find_for_sitemap
-     Document.find(:all, :limit => 10)
+     Document.find(:all, :limit => 50000)
   end
   
   def Document.search(q, facets_browse = [], page = 1)
