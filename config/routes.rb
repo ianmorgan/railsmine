@@ -35,9 +35,9 @@ ActionController::Routing::Routes.draw do |map|
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
   # map.root :controller => "welcome"
-  
-  map.root :controller => 'search', :action => 'home' 
-  
+
+  map.sitemap 'sitemap.xml' , :controller => 'sitemap' , :action => 'sitemap'
+  map.root :controller => 'search', :action => 'home'
   map.connect 'highlighted/*specs', :controller => 'viewer' , :action => 'highlighted'
 
 
