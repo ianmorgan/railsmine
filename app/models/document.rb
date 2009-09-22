@@ -25,6 +25,10 @@ class Document < ActiveRecord::Base
          'railswiki' => 'Rails Wiki',
          'rails_guides' => 'Rails Guides'}[source]
   end
+
+  def Document.find_for_sitemap
+     Document.find(:all, :limit => 10)
+  end
   
   def Document.search(q, facets_browse = [], page = 1)
      facets_browse = facets_browse.to_a 
@@ -38,13 +42,6 @@ class Document < ActiveRecord::Base
              :limit => RESULTS_PER_PAGE )
   end
    
-  def Document.testing  
-    Document.find_by_solr("rails", 
-       :facets => {:zeros => false, 
-                   :sort => true,
-                   :aaquery => "source:api",
-                   :browse => ["is_source_code:Y"],
-                   :fields => [:category, :source]})
-  end
+  
   
 end

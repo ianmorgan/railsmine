@@ -45,6 +45,16 @@ class SearchController < ApplicationController
     end
     
   end
+
+  # todo - being lazy this really isnt the place for this action !!
+  def document
+    begin
+      @document = Document.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      #dont care
+    end
+    render :template => 'search/document'
+  end
   
  
  

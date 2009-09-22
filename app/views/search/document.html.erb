@@ -1,0 +1,23 @@
+
+
+<form name="search" action="/search/search">
+  <div>RailsMine. Digging for more about Rails...</div>
+  <input type="text" name="q" value="<%=h params[:q]%>"> <input type="submit" value="Dig In"> 
+</form>
+
+
+<% if @document  %>
+  
+    <div>
+       <b><%=Document.source_full_name(@document.source)%></b> <a class="resultlink" href="<%= @document.url %>"><%=@document.title %></a>
+    </div>
+     <div class="abstract">
+         <%= displayable_abstract @document %>
+     </div>
+       
+
+
+<% else %>
+  <h2>No Document Found!!</h2>
+<% end %>
+
