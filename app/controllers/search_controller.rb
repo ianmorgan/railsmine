@@ -18,11 +18,13 @@ class SearchController < ApplicationController
     
     started = Time.now
     @page = determine_page 
+    @facets = BrowseFacetsHelper.new(params[:facet]).browse_facets_array
+    
     
     if params[:facet]
       @results = Document.search(
             params[:q] , 
-            params[:facet],
+            @facets,
             @page)
     else
       @results = Document.search(
@@ -36,8 +38,6 @@ class SearchController < ApplicationController
       @paginator = ResultsPaginator.new(@results)
       @paginator.page = determine_page
       
-      @category_facet = @results.facets['facet_fields']['category_facet'] 
-      @source_facet = @results.facets['facet_fields']['source_facet']     
       @elapsed = finished - started
       render :template => 'search/results'
     else

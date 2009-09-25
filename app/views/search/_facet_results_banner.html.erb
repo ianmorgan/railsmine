@@ -3,10 +3,14 @@
         <% if helper.contains_facet?({facet => name}) %>
           <span class="selected_facet"> <%= displayable_facet_name(facet,name) %> </span>
           <a href='<%="/search/search/?q=#{params[:q]}"%>'>
-         All <%= facet.pluralize.capitalize %>
-      </a>
+            All <%= facet.pluralize.capitalize %>
+          </a>
         <% else %>
-         <a href='<%="/search/search/?q=#{params[:q]}&facet=#{facet}:#{name}"%>'> 
+          <%  
+             helper = BrowseFacetsHelper.new(params[:facet])
+             helper.append_facet "#{facet}:#{name}"
+          %> 
+           <a href='<%="/search/search/?q=#{params[:q]}&facet=#{helper.encode_escaped}"%>'> 
 	       <%= displayable_facet_name(facet,name)  %>
 	     </a> (<%= count %>)
         <% end %>
