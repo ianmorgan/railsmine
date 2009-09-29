@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :method_or_classes
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   map.resources :documents
