@@ -1,0 +1,28 @@
+<h1>Listing method_or_classes</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Is method</th>
+    <th>Is class</th>
+    <th>Document</th>
+    <th>Url</th>
+  </tr>
+
+<% @method_or_classes.each do |method_or_class| %>
+  <tr>
+    <td><%=h method_or_class.name %></td>
+    <td><%=h method_or_class.is_method %></td>
+    <td><%=h method_or_class.is_class %></td>
+    <td><%=h method_or_class.document_id %></td>
+    <td><%=h method_or_class.url %></td>
+    <td><%= link_to 'Show', method_or_class %></td>
+    <td><%= link_to 'Edit', edit_method_or_class_path(method_or_class) %></td>
+    <td><%= link_to 'Destroy', method_or_class, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New method_or_class', new_method_or_class_path %>

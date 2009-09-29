@@ -2,15 +2,15 @@
       $(document).ready(function(){
       
         <% for d in @results.docs %>
- 
-	$("#<%=d.id%>").click(function(event){
-	alert ('<%=d.file_path.gsub('public','')%>');
-	alert ("<%= url_for  d %>");
-          $("#ajax").load ('<%= url_for  d %>');
+
+	//$("#<%=d.id%>").click(function(event){
+	//alert ('<%=d.file_path.gsub('public','')%>');
+	//alert ("<%= url_for  d %>");
+          //$("#ajax").load ('<%= url_for  d %>');
           //$("#ajax").html ('<%=d.id%>'); 
           //$("#ajax").load ('<%="http://localhost:3000/search/test"%>');
          
-	});
+	//});
         <% end %>
       });
 </script>
@@ -26,9 +26,27 @@
   <%= render :partial => 'partials/search_history' %>
 <% end %>
 
+
+
 <%= render :partial => 'search_results_banner' %>
 <% if @results && @results.total > 0 %>
-  
+
+   <% if @methods.docs.size > 0 %>
+       <div class="methods_header">
+       	<span>Matching methods</span>
+       </div>
+       <% for method in @methods.docs %>
+           <div class="resultline">
+           <b><%=Document.source_full_name(method.document.source)%></b> <a class="resultlink" href="<%= "/" + method.url %>"><%=method.method_name%></a> on <%=method.class_name%>
+           </div>
+       <% end -%>
+   <% end %>
+
+
+   <div class="methods_header">
+       	<span>Results</span>
+   </div>
+      
   <% for document in @results.docs %>
     <div class="resultline">
        <b><%=Document.source_full_name(document.source)%></b> <a class="resultlink" href="<%= document.url %>"><%=document.title %></a> 

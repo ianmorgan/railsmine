@@ -32,6 +32,7 @@ class SearchController < ApplicationController
             "",
             @page)
     end
+    @methods = MethodOrClass.find_by_solr(params[:q]) 
     finished = Time.now
     
     if @results && @results.total > 0

@@ -16,7 +16,13 @@ class Document < ActiveRecord::Base
        'screencast' => 'Screencasts',
        'api' => 'API'}[category]
   end
-  
+
+  def Document.find_by_partial_url(url)
+    #todo - unsafe sql - only for internal use
+    result = /(.*)(#)/.match(url)
+    url = result[1] unless result.nil?
+    Document.find(:first, :conditions => "url like '%" +  url + "%'")
+  end
   
   def Document.source_full_name(source)
         {'rails_api' => 'Rails API',

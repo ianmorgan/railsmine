@@ -1,0 +1,28 @@
+<p>
+  <b>Name:</b>
+  <%=h @method_or_class.name %>
+</p>
+
+<p>
+  <b>Is method:</b>
+  <%=h @method_or_class.is_method %>
+</p>
+
+<p>
+  <b>Is class:</b>
+  <%=h @method_or_class.is_class %>
+</p>
+
+<p>
+  <b>Document:</b>
+  <%=h @method_or_class.document_id %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%=h @method_or_class.url %>
+</p>
+
+
+<%= link_to 'Edit', edit_method_or_class_path(@method_or_class) %> |
+<%= link_to 'Back', method_or_classes_path %>
