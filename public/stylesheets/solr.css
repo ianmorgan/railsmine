@@ -87,6 +87,21 @@ white-space:nowrap;
  padding: 2px;
 }
 
+.methods_header {
+ margin-top: 15px;
+ width: 200px;
+}
+
+.methods_header span{
+ width: 200px;
+ background:#FAD8DB  none repeat scroll 0 0;
+ font-size:120%;
+ font-weight:bold;
+ padding: 5px;
+ border: solid green 2px;
+}
+
+
 /* copied from Google */
 element.style {
 right:0;
