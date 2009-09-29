@@ -37,7 +37,7 @@
        </div>
        <% for method in @methods.docs %>
            <div class="resultline">
-           <b><%=Document.source_full_name(method.document.source)%></b> <a class="resultlink" href="<%= "/" + method.url %>"><%=method.method_name%></a> on <%=method.class_name%>
+           <b><%=Document.source_full_name(method.document.source)%></b> <a class="resultlink" href="<%= method.url %>"><%=method.method_name%></a> on <%=method.class_name%>
            </div>
        <% end -%>
    <% end %>
