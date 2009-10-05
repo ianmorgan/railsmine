@@ -32,7 +32,9 @@ class SearchController < ApplicationController
             "",
             @page)
     end
-    @methods = MethodOrClass.find_by_solr(params[:q]) 
+    @methods = MethodOrClass.find_by_solr("method_name:#{params[:q]} + is_method:true", :limit => 10)
+    @classes = MethodOrClass.find_by_solr("class_name:#{params[:q]} + is_class:true", :limit => 10)
+
     finished = Time.now
     
     if @results && @results.total > 0
