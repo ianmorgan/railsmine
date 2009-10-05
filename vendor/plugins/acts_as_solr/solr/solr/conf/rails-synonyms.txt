@@ -12,7 +12,9 @@
 
 #-----------------------------------------------------------------------
 #rails terminolgy 
-activerecord, active record, ar => activerecord
-actioncontroller, action controller, ac => actioncontroller
-actionview, action view, av => actionview
+activerecord, ar => active record
+actioncontroller, ac => action controller
+actionview, av => actionview
+rails, ror => ruby on rails
+db, database => database
 
