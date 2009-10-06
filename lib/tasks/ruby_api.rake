@@ -50,6 +50,65 @@ namespace :ruby_api do
       rescue
         puts "Failed to import #{file}"
       end
-   end
+    end
+
+
+    puts "now processing methods and classes"
+    puts "removing existing methods and classes from index"
+
+    counter = 0;
+    MethodOrClass.find_all_by_source('ruby_api').each do |doc|
+         puts "#{counter += 1}"
+         doc.solr_destroy
+         doc.delete
+    end
+
+    classes_doc = Hpricot(File.new('public/ruby_api/fr_class_index.html').read)
+    (classes_doc/"#index-entries a").each do |link|
+      classname = link.inner_html
+      url = link.attributes['href'].strip
+
+      puts classname
+
+      doc = Document.find_by_partial_url(url)
+      unless doc.nil?
+        puts "Adding #{classname} to index"
+        MethodOrClass.new(:is_method => false,
+                          :is_class => true,
+                          :source => 'ruby_api',
+                          :document_id => doc.id,
+                          :method_name => nil,
+                          :class_name => classname,
+                          :url => '/ruby_api/' + url).save
+
+      end
+    end
+
+
+    methods_doc = Hpricot(File.new('public/ruby_api/fr_method_index.html').read)
+     (methods_doc/"#index-entries a").each do |link|
+      details = link.inner_html
+
+      match = /(.*)(\()(.*)(\))/.match(details)
+      methodname = match[1].strip unless match.nil?
+      classname = match[3].strip unless match.nil?
+      url = link.attributes['href'].strip
+
+      puts methodname + " on " + classname
+
+      doc = Document.find_by_partial_url(url)
+      unless doc.nil?
+        puts "Adding #{methodname} to index"
+        MethodOrClass.new(:is_method => true,
+                          :is_class => false,
+                          :source => 'ruby_api',
+                          :document_id => doc.id,
+                          :method_name => methodname,
+                          :class_name => classname,
+                          :url => '/ruby_api/' + url).save
+
+      end
+    end
   end
+
 end
