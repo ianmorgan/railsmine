@@ -49,8 +49,8 @@
        </div>
        <% for method in @methods.docs %>
            <div class="resultline">
-           <b>
-           ???</b> <a class="resultlink" href="<%= method.url %>"><%=method.method_name%></a> on <%=method.class_name%>
+           <b><%=Document.source_full_name(cl.document.source) unless cl.document.nil?%>
+           </b> <a class="resultlink" href="<%= method.url %>"><%=method.method_name%></a> on <%=method.class_name%>
            </div>
        <% end -%>
    <% end %>
