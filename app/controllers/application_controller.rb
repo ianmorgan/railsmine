@@ -7,4 +7,16 @@ class ApplicationController < ActionController::Base
 
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
+  # helper_method :admin?
+   protected
+   def admin?
+     RAILS_ENV == 'development'
+   end
+
+   def authorize
+     unless admin?
+       redirect_to :controller => 'search', :action => 'unauthorised'
+       false
+     end
+   end
 end

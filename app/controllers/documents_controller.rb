@@ -1,4 +1,6 @@
 class DocumentsController < ApplicationController
+  before_filter :authorize
+    
   # GET /documents
   # GET /documents.xml
   def index

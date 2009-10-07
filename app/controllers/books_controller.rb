@@ -7,6 +7,8 @@
 # Visit http://www.pragmaticprogrammer.com/titles/fr_arr for more book information.
 #---
 class BooksController < ApplicationController
+  before_filter :authorize
+  
  
   def search
     @results = Book.find_by_solr(params[:q], 

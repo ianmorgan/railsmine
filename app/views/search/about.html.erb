@@ -1,0 +1,27 @@
+<% content_for :search_history_content do %>
+  <%= render :partial => 'partials/search_history' %>
+<% end %>
+
+<div class="content_page">
+
+<h1>About the RailsMine</h1>
+<p>
+  Much as I love Ruby and Rails, I sometimes find that in comparison to Java
+  it is frustrating to find the right information.
+</p>
+
+<p>
+  So I've started to put together this little web site to make life easier. My aim
+  is to document the key sites and API documents in a way that makes it easier to
+  find exactly what I need. There is no intention to compete with Google - that
+  is still really useful. But if you need more targetted information
+  on a particular topic, or the API document for a specific method or class
+  you may find this eaiser. See the <%=link_to "Search Hints", :action => 'hints'%> for
+  more help.
+</p>
+
+<p>
+  I based this on an example in the Advanced Rails Recipes book.
+  I use Apache Solr for indexing and searching.
+</p>
+</div>

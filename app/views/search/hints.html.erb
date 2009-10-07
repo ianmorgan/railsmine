@@ -1,0 +1,24 @@
+<% content_for :search_history_content do %>
+  <%= render :partial => 'partials/search_history' %>
+<% end %>
+
+<div class="content_page">
+
+<h1>Search Hints</h1>
+<p>
+  Use these shortcuts for common rails terms:
+  <table>
+    <tr><td><strong>ar</strong></td><td>-</td></td><td>Active Record</td></tr>
+    <tr><td><strong>ac</strong></td><td>-</td><td>Action Controller</td></tr>
+    <tr><td><strong>av</strong></td><td>-</td><td>Action View</td></tr>
+     
+  </table>
+</p>
+
+<p>
+  For more complex queries refer to the
+  <a href="http://lucene.apache.org/java/2_9_0/queryparsersyntax.html" target="_blank">
+  Lucene query format</a>.
+</p>
+
+</div>

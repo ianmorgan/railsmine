@@ -3,5 +3,6 @@
 <% end %>
 
 <form name="search" action="/search/search">
-  <input type="text" name="q" value="<%=h params[:q]%>"> <input type="submit" value="Find"> 
+  <input type="text" name="q" value="<%=h params[:q]%>"> <input type="submit" value="Find">
+  <span><%=link_to 'hints', :action => 'hints'%></span>
 </form>

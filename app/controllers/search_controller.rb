@@ -10,9 +10,17 @@ class SearchController < ApplicationController
   end
   
   def about
-    render :text => "TODO - write an about page"
+    render :template => 'search/about'
   end
-  
+
+  def hints
+    render :template => 'search/hints'
+  end
+
+  def unauthorised
+    render :text => "Not authorised"
+  end
+ 
   def search
     store_in_visitor_history
     

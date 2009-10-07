@@ -1,4 +1,6 @@
 class MethodOrClassesController < ApplicationController
+  before_filter :authorize
+  
   # GET /method_or_classes
   # GET /method_or_classes.xml
   def index
