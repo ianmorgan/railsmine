@@ -100,18 +100,20 @@ class SearchController < ApplicationController
   
   end
   
-  def store_in_visitor_history 
-    url = url_for(:controller => 'search',
-          :action => 'search',
-          :q => params[:q],
-          :only_path => true)
-          
-    @site_visitor.site_visitor_history.new(
-    	:displayable_string => params[:q],
-    	:url => url
-      ).save
-      
-    @search_history = @site_visitor.site_visitor_history.latest_5_searches
+  def store_in_visitor_history
+    if params[:facet].nil? && determine_page == 1
+      url = url_for(:controller => 'search',
+                    :action => 'search',
+                    :q => params[:q],
+                    :only_path => true)
 
-  end
+      @site_visitor.site_visitor_history.new(
+              :displayable_string => params[:q],
+              :url => url
+      ).save
+
+      @search_history = @site_visitor.site_visitor_history.latest_5_searches
+    end
+  end 
+
 end

@@ -1,5 +1,5 @@
 class Document < ActiveRecord::Base
-  RESULTS_PER_PAGE = 5
+
   acts_as_solr :facets => [:category, :source, :is_source_code]
   
   def path_to_source
@@ -44,8 +44,8 @@ class Document < ActiveRecord::Base
                          :browse => facets_browse << "is_source_code:N",
                          :zeros => false, 
                          :sort => true },
-             :offset => (page-1)*RESULTS_PER_PAGE , 
-             :limit => RESULTS_PER_PAGE )
+             :offset => (page-1) * RailsMineConfig.results_per_page,
+             :limit => RailsMineConfig.results_per_page)
   end
    
   

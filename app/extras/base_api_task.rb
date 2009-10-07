@@ -42,7 +42,7 @@ class BaseApiTask
                            :abstract => abstract,
                            :content => File.read(file))
         rescue Exception
-          puts "Error processing file #{file}"
+          puts "Error processing file #{file.to_s}"
         end
       end
     end

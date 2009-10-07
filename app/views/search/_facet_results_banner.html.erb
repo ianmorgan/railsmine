@@ -1,4 +1,4 @@
-<%  helper = BrowseFacetsHelper.new(params[:facet]) %> 
+<% helper = BrowseFacetsHelper.new(params[:facet]) %>
       <% facets.each do |name, count| %>
         <% if helper.contains_facet?({facet => name}) %>
           <span class="selected_facet"> <%= displayable_facet_name(facet,name) %> </span>
