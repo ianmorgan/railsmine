@@ -10,7 +10,7 @@ namespace :ruby_api do
   task :import => :environment do
       importer = BaseApiTask.new
       importer.do_import(:name => 'ruby_api',
-                         :directory => 'public/rubu_api',
+                         :directory => 'public/ruby_api',
                          :url_prefix => '/ruby_api/')
   end
 
