@@ -18,7 +18,7 @@ class BaseApiTask
       unless excluded_url_checker.call(file)
         begin
           puts "Processing: #{file}"
-          doc = Hpricot(open(file))
+          doc = Nokogiri::HTML(open(file))
           title = (doc/"title" ).text
           category = ''
           if title =~ /\AClass\: /
