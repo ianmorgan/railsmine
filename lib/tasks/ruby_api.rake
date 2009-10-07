@@ -1,4 +1,4 @@
-require 'hpricot'
+require 'nokogiri'
 require 'open-uri'
 require 'app/extras/base_api_task.rb'
 
