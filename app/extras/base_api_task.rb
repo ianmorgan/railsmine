@@ -17,6 +17,7 @@ class BaseApiTask
     Dir["#{options[:directory]}/**/*.html"].each do |file|
       unless excluded_url_checker.call(file)
         begin
+          puts "Processing: #{file}"
           doc = Hpricot(open(file))
           title = (doc/"title" ).text
           category = ''
@@ -41,8 +42,8 @@ class BaseApiTask
                            :is_source_code => 'N',
                            :abstract => abstract,
                            :content => File.read(file))
-        rescue Exception
-          puts "Error processing file #{file.to_s}"
+        rescue Exception => ex
+          puts "FAILED!" + ex
         end
       end
     end
