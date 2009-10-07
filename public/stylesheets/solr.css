@@ -45,7 +45,6 @@ white-space:nowrap;
  margin-left: 2px;
  margin:0.1em 0;
  padding:0.2em;
- 		
 }
 
 .abstract {
@@ -66,6 +65,11 @@ white-space:nowrap;
    width:350px;
    display:block;
    margin-bottom: 3px;
+}
+
+.content_page  {
+    margin-left: 50px;
+    margin-right: 400px;
 }
 
 .search_history .item {
