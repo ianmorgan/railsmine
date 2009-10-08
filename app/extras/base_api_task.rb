@@ -29,15 +29,16 @@ class BaseApiTask
           elsif title =~ /\AFile\: /
             category = 'api'
           else
-             if file.match(/[.]src/)
+            if file.match(/[.]src/)
               category = 'src'
               is_source_code = 'Y'
             else
               category = 'doco'
-             end
-         end  
+            end
+          end
 
           abstract = (doc/"#description").inner_html
+          puts "ABSTRACT: #{abstract}"
 
           puts "Importing #{counter += 1}:#{file} as #{category}"
           Document.create!(:title => title,
@@ -45,7 +46,7 @@ class BaseApiTask
                            :file_path => file,
                            :url => file.gsub('public', ''),
                            :source => options[:name],
-                           :is_source_code => is_source_code ,
+                           :is_source_code => is_source_code,
                            :abstract => abstract,
                            :content => File.read(file))
         rescue Exception => ex
