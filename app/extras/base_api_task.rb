@@ -18,7 +18,7 @@ class BaseApiTask
       unless excluded_url_checker.call(file)
         begin
           puts "Processing: #{file}"
-          doc = Nokogiri::HTML(open(file))
+          doc = Nokogiri::XML(open(file))
           title = (doc/"title" ).text
           category = ''
           is_source_code = 'N'
