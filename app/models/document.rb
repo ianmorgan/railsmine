@@ -25,8 +25,8 @@ class Document < ActiveRecord::Base
   end
   
   def Document.source_full_name(source)
-        {'rails_api' => 'Rails API',
-         'ruby_api' => 'Ruby API',
+        {'rails_api_233' => 'Rails API',
+         'ruby_api_186' => 'Ruby API',
          'railscasts' => 'Railscasts',
          'railswiki' => 'Rails Wiki',
          'rails_guides' => 'Rails Guides'}[source]

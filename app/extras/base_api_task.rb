@@ -38,8 +38,7 @@ class BaseApiTask
           end
 
           abstract = (doc/"#description").inner_html
-          puts "ABSTRACT: #{abstract}"
-
+          
           puts "Importing #{counter += 1}:#{file} as #{category}"
           Document.create!(:title => title,
                            :category => category,
