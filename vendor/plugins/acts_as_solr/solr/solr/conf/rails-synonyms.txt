@@ -11,10 +11,14 @@
 # limitations under the License.
 
 #-----------------------------------------------------------------------
-#rails terminolgy 
+#rails, ruby and related terminolgy
 activerecord, ar => active record
 actioncontroller, ac => action controller
-actionview, av => actionview
+actionview, av => action view
+activesupport, as => active support
+activeresource, ars => active resource
 rails, ror => ruby on rails
-db, database => database
+db => database
+mem => memory
+txn => transaction
 
