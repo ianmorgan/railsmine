@@ -10,10 +10,10 @@ end
 
 namespace :rails_api do
   desc "Import the Rails API docs"
-  task :import => :environment do
+  task :import_233 => :environment do
    importer = RailsApiImporter.new
-   importer.do_import(:name => 'rails_api',
-                      :directory => 'public/rails_api',
-                      :url_prefix => '/rails_api/')
+   importer.do_import(:name => 'rails_api_233',
+                      :directory => 'public/rails_api_233',
+                      :url_prefix => '/rails_api_233/')
   end
 end
