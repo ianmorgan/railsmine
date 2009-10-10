@@ -25,7 +25,9 @@ class SearchController < ApplicationController
     started = Time.now
     @page = determine_page
     @facets = BrowseFacetsHelper.new(params[:facet]).browse_facets_array
-    @methods = MethodOrClass.find_by_solr("method_name:#{params[:q]} + is_method:true", :limit => 10)
+    @methods = MethodOrClass.find_by_solr("method_name:#{params[:q]} + is_method:true",
+                                          :limit => 10,
+                                          :offset => (@page-1)*10 )
     finished = Time.now
 
     if @methods and @methods.total > 0
