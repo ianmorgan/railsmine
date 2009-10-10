@@ -33,6 +33,13 @@ white-space:nowrap;
  margin-top: 10px;
 }
 
+.moreresults {
+  margin-top: 5px;
+  margin-left: 3px;
+  background: rgb(252,242,243) none repeat scroll 0 0;
+  width: 300px;
+}
+
 #searchcategory p{
  margin:0.1em 0;
  padding:0.2em;
