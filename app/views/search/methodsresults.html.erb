@@ -1,0 +1,21 @@
+<%= render :partial => 'search/searchform' %>
+
+<% content_for :search_history_content do %>
+  <%= render :partial => 'partials/search_history' %>
+<% end %>
+
+<% if @methods.docs.size > 0 %>
+    <div class="methods_header">
+        <span>Matching methods</span>
+    </div>
+    <% for method in @methods.docs %>
+        <div class="resultline">
+        <b><%=Document.source_full_name(method.document.source) unless method.document.nil?%>
+        </b> <a class="resultlink" href="<%= method.url %>"><%=method.method_name%></a> on <%=method.class_name%>
+        </div>
+    <% end -%>
+<% end %>
+
+<% (1..@methods.total/10+1).each do |page| %>
+  <a href='<%="/search/searchmethods/?q=#{params[:q]}&page=#{page}"%>'><%="#{page}"%></a>
+<% end %>

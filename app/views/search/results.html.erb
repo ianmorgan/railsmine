@@ -16,16 +16,11 @@
 </script>
 
 
-
-<form name="search" action="/search/search">
-  <div>RailsMine. Digging for more about Rails...</div>
-  <input type="text" name="q" value="<%=h params[:q]%>"> <input type="submit" value="Dig In"> 
-</form>
+<%= render :partial => 'search/searchform' %>
 
 <% content_for :search_history_content do %>
   <%= render :partial => 'partials/search_history' %>
 <% end %>
-
 
 
 <%= render :partial => 'search_results_banner' %>
@@ -53,6 +48,11 @@
            </b> <a class="resultlink" href="<%= method.url %>"><%=method.method_name%></a> on <%=method.class_name%>
            </div>
        <% end -%>
+       <% if @methods.total > 3 %>
+         <div class="moreresults">
+           More available... <%= link_to "browse methods only", :action => 'searchmethods', :q => params[:q] %>
+         </div>
+       <% end %>
    <% end %>
 
 

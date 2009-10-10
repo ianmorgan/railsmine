@@ -20,6 +20,25 @@ class SearchController < ApplicationController
   def unauthorised
     render :text => "Not authorised"
   end
+
+  def searchmethods
+    started = Time.now
+    @page = determine_page
+    @facets = BrowseFacetsHelper.new(params[:facet]).browse_facets_array
+    @methods = MethodOrClass.find_by_solr("method_name:#{params[:q]} + is_method:true", :limit => 10)
+    finished = Time.now
+
+    if @methods and @methods.total > 0
+      @paginator = ResultsPaginator.new(@results)
+      @paginator.page = determine_page
+
+      @elapsed = finished - started
+      render :template => 'search/methodsresults'
+    else
+       render :template => 'search/notfound'
+    end
+    
+  end
  
   def search
     store_in_visitor_history
@@ -40,8 +59,8 @@ class SearchController < ApplicationController
             "",
             @page)
     end
-    @methods = MethodOrClass.find_by_solr("method_name:#{params[:q]} + is_method:true", :limit => 10)
-    @classes = MethodOrClass.find_by_solr("class_name:#{params[:q]} + is_class:true", :limit => 10)
+    @methods = MethodOrClass.find_by_solr("method_name:#{params[:q]} + is_method:true", :limit => 5)
+    @classes = MethodOrClass.find_by_solr("class_name:#{params[:q]} + is_class:true", :limit =>5)
 
     finished = Time.now
     
