@@ -69,7 +69,13 @@ class SearchController < ApplicationController
     if @results && @results.total > 0
       @paginator = ResultsPaginator.new(@results)
       @paginator.page = determine_page
-      
+
+       @facets_param = ""
+       unless params[:facet].nil?
+          helper = BrowseFacetsHelper.new(params[:facet])
+          @facets_param = helper.encode_escaped
+       end
+
       @elapsed = finished - started
       render :template => 'search/results'
     else

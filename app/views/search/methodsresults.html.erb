@@ -16,6 +16,4 @@
     <% end -%>
 <% end %>
 
-<% (1..@methods.total/10+1).each do |page| %>
-  <a href='<%="/search/searchmethods/?q=#{params[:q]}&page=#{page}"%>'><%="#{page}"%></a>
-<% end %>
+<%= render :partial => 'search/pages', :locals => {:total => @methods.total}  %>
