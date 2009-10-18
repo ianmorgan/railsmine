@@ -22,7 +22,7 @@
 	       <a class="resultlink" href="<%= cl.url %>"><%=cl.class_name%></a>
 	     </div>
           <% end -%>
-         <% if @classes.total > 1 %>
+         <% if @classes.total > 3 %>
          <div class="moreresults">
            More available... <%= link_to "browse classes only", :action => 'searchclasses', :q => params[:q] %>
          </div>
