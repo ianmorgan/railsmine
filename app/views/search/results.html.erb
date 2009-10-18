@@ -1,20 +1,3 @@
-<script type="text/javascript">
-      $(document).ready(function(){
-      
-        <% for d in @results.docs %>
-
-	//$("#<%=d.id%>").click(function(event){
-	//alert ('<%=d.file_path.gsub('public','')%>');
-	//alert ("<%= url_for  d %>");
-          //$("#ajax").load ('<%= url_for  d %>');
-          //$("#ajax").html ('<%=d.id%>'); 
-          //$("#ajax").load ('<%="http://localhost:3000/search/test"%>');
-         
-	//});
-        <% end %>
-      });
-</script>
-
 
 <%= render :partial => 'search/searchform' %>
 
@@ -32,9 +15,21 @@
          </div>
          <% for cl in @classes.docs %>
              <div class="resultline">
-             <b><%=Document.source_full_name(cl.document.source)%></b> <a class="resultlink" href="<%= cl.url %>"><%=cl.class_name%></a>
-             </div>
-         <% end -%>
+             
+               <b>
+                <%=Document.source_full_name(cl.document.source) unless cl.document.nil?%>
+	       </b> 
+	       <a class="resultlink" href="<%= cl.url %>"><%=cl.class_name%></a>
+	     </div>
+          <% end -%>
+         <% if @classes.total > 1 %>
+         <div class="moreresults">
+           More available... <%= link_to "browse classes only", :action => 'searchclasses', :q => params[:q] %>
+         </div>
+       <% end %>
+
+             
+         
      <% end %>
 
 

@@ -31,7 +31,7 @@ class SearchController < ApplicationController
     finished = Time.now
 
     if @methods and @methods.total > 0
-      @paginator = ResultsPaginator.new(@results)
+      @paginator = ResultsPaginator.new(@methods)
       @paginator.page = determine_page
 
       @elapsed = finished - started
@@ -41,6 +41,28 @@ class SearchController < ApplicationController
     end
     
   end
+  
+  def searchclasses
+      started = Time.now
+      @page = determine_page
+      @facets = BrowseFacetsHelper.new(params[:facet]).browse_facets_array
+      @classes = MethodOrClass.find_by_solr("class_name:#{params[:q]} + is_class:true",
+                                            :limit => 10,
+                                            :offset => (@page-1)*10 )
+      finished = Time.now
+  
+      if @classes and @classes.total > 0
+        @paginator = ResultsPaginator.new(@classes)
+        @paginator.page = determine_page
+  
+        @elapsed = finished - started
+        render :template => 'search/classesresults'
+      else
+         render :template => 'search/notfound'
+      end
+      
+    end
+
  
   def search
     store_in_visitor_history
@@ -48,7 +70,6 @@ class SearchController < ApplicationController
     started = Time.now
     @page = determine_page 
     @facets = BrowseFacetsHelper.new(params[:facet]).browse_facets_array
-    
     
     if params[:facet]
       @results = Document.search(
@@ -61,8 +82,9 @@ class SearchController < ApplicationController
             "",
             @page)
     end
-    @methods = MethodOrClass.find_by_solr("method_name:#{params[:q]} + is_method:true", :limit => 5)
-    @classes = MethodOrClass.find_by_solr("class_name:#{params[:q]} + is_class:true", :limit =>5)
+    
+    @methods = MethodOrClass.find_by_solr("method_name:#{params[:q]} + is_method:true", :limit => 3)
+    @classes = MethodOrClass.find_by_solr("class_name:#{params[:q]} + is_class:true", :limit =>3)
 
     finished = Time.now
     
