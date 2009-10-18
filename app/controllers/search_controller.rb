@@ -26,8 +26,8 @@ class SearchController < ApplicationController
     @page = determine_page
     @facets = BrowseFacetsHelper.new(params[:facet]).browse_facets_array
     @methods = MethodOrClass.find_by_solr("method_name:#{params[:q]} + is_method:true",
-                                          :limit => 10,
-                                          :offset => (@page-1)*10 )
+                                          :limit => RailsMineConfig.results_per_page,
+                                          :offset => (@page-1)*RailsMineConfig.results_per_page )
     finished = Time.now
 
     if @methods and @methods.total > 0
@@ -47,8 +47,8 @@ class SearchController < ApplicationController
       @page = determine_page
       @facets = BrowseFacetsHelper.new(params[:facet]).browse_facets_array
       @classes = MethodOrClass.find_by_solr("class_name:#{params[:q]} + is_class:true",
-                                            :limit => 10,
-                                            :offset => (@page-1)*10 )
+                                            :limit => RailsMineConfig.results_per_page,
+                                            :offset => (@page-1)*RailsMineConfig.results_per_page )
       finished = Time.now
   
       if @classes and @classes.total > 0
