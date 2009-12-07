@@ -29,6 +29,4 @@ private
      params[:specs].last
   end
   
-  
-
 end
