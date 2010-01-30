@@ -14,8 +14,8 @@ namespace :railscasts do
       doc.delete
     end
 
-    crawler = SiteCrawler.new('http://railscasts.com/episodes/archive')
-    #crawler = SiteCrawler.new('http://railscasts.com/episodes/163-self-referential-association')
+    #crawler = SiteCrawler.new('http://railscasts.com/episodes/archive')
+    crawler = SiteCrawler.new('http://railscasts.com/episodes/163-self-referential-association')
     counter = 0
     crawler.crawlSite do |url, page|
       begin
@@ -25,8 +25,13 @@ namespace :railscasts do
         category = 'screencast'
 
         episode_number = (doc/".episodes .episode .side .number").inner_html
-        unless episode_number.blank?
+        puts episode_number 
+        
+        not_an_episode_page = url.to_s.match(/episodes\/[0-9]/).nil?
+        
+        unless episode_number.blank? || not_an_episode_page 
           title = (doc/".episodes .episode .main h2").inner_html
+          puts "Add #{title} to index"
           abstract = (doc/".episodes .episode .main .description").inner_html
 
           puts "Importing #{counter += 1}:#{url} as #{category}"
