@@ -1,0 +1,17 @@
+<div id="searchcategory">
+ <p>
+  By <i>Category</i>
+   <%= render :partial => 'facet_results_banner',
+              :locals => {:browse => @browse_category,
+                          :facet => 'category',
+                          :facets => @results.facets['facet_fields']['category_facet']}  %>
+ </p>
+ <p>
+  By <i>Source</i>
+   <%= render :partial => 'facet_results_banner',
+              :locals => {:browse => @browse_source,
+                          :facet => 'source',
+                          :facets => @results.facets['facet_fields']['source_facet']}  %>
+ 
+ </p>
+</div>
