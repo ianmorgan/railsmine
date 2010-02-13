@@ -28,6 +28,8 @@ class SearchController < ApplicationController
     @methods = MethodOrClass.find_by_solr("method_name:#{params[:q]} + is_method:true",
                                           :limit => RailsMineConfig.results_per_page,
                                           :offset => (@page-1)*RailsMineConfig.results_per_page )
+    # hack - keep view partials happy
+    @results = @methods 
     finished = Time.now
 
     if @methods and @methods.total > 0
@@ -37,7 +39,7 @@ class SearchController < ApplicationController
       @elapsed = finished - started
       render :template => 'search/methodsresults'
     else
-       render :template => 'search/notfound'
+      render :template => 'search/notfound'
     end
     
   end
@@ -129,15 +131,15 @@ class SearchController < ApplicationController
   def do_search
   end
   
-  def set_user_cookie
-  
-   mycookie = cookies[:railsmine_history] 
-   cookies[:railsmine_history] = {
-     :value => 'a yummy cookie',
-     :expires => 1.year.from_now
-   }
-
-  end
+#  def set_user_cookie
+#  
+#   mycookie = cookies[:railsmine_history] 
+#   cookies[:railsmine_history] = {
+#     :value => 'a yummy cookie',
+#     :expires => 1.year.from_now
+#   }
+#
+#  end
   
   def check_visitor_history
      visitor_cookie = cookies[:railsmine_visitor]
