@@ -18,6 +18,9 @@
    border-top:1px solid #FF0000;
 }
 
+#searchstatus div{
+  heigth: 15px;
+}
 #searchstatus, .clr {
 clear:both;
 }
@@ -109,7 +112,7 @@ white-space:nowrap;
  font-size:120%;
  font-weight:bold;
  padding: 5px;
- border: solid green 2px;
+ border-top: solid red 1px;
 }
 
 
