@@ -50,7 +50,7 @@ class Document < ActiveRecord::Base
    
   
   #fix bug in ruby1.9
-  String class_eval do
+  String.class_eval do
     def to_a 
       Array.new(self,1)
     end
