@@ -1,10 +1,8 @@
-<div class="search_history">
-  <div class="header">Recent searches  <%=link_to "More...", {:controller=>'search_history', :action=> 'latest'}, :class=>'more' %></div>
+
+  <h2>Recent searches</h2>
   
   <% for history in @search_history  %>
     <div class="item">
       <a href="<%=history.url%>"><%=history.displayable_string %></a> (<%=distance_of_time_in_words_to_now(history.created_at)%> ago) 
      </div>
   <% end %>
-  </ul>
-</div>

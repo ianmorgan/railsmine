@@ -1,5 +1,5 @@
-<form name="search" action="/search/search">
-  <div>RailsMine. Digging for more about Rails...</div>
+<form id="searchform" name="search" action="/search/search">
+  <h1>RailsMine. Digging for more about Rails...</h1>
   <input type="text" name="q" value="<%=h params[:q]%>"> <input type="submit" value="Dig In">
   <span><%=link_to 'hints', :action => 'hints'%></span>
 </form>

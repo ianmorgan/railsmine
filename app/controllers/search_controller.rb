@@ -142,10 +142,13 @@ class SearchController < ApplicationController
 #  end
   
   def check_visitor_history
+     @search_history = Array.new
      visitor_cookie = cookies[:railsmine_visitor]
-     if visitor_cookie && visitor_cookie.length > 0
+     if visitor_cookie 
        @site_visitor = SiteVisitor.find_by_cookie(visitor_cookie)
-       @search_history = @site_visitor.site_visitor_history.latest_5_searches
+       if @site_visitor
+          @search_history = @site_visitor.site_visitor_history.latest_5_searches
+       end
      else
        visitor_cookie = SiteVisitor.generate_unique_cookie 
        cookies[:railsmine_visitor] = {
@@ -154,7 +157,7 @@ class SearchController < ApplicationController
         }
         @site_visitor = SiteVisitor.new(:cookie => visitor_cookie)
         @site_visitor.save
-        @search_history = Array.new
+        
      end
   
   end

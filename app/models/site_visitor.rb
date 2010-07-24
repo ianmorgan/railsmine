@@ -8,6 +8,14 @@ class SiteVisitor < ActiveRecord::Base
            :order => 'created_at DESC',
            :conditions => ["site_visitor_id = ?", parent_id ]) 
     end 
+    
+     def latest_searches 
+          parent_id = proxy_owner.id
+          find(:all,
+               :limit => 100,
+               :order => 'created_at DESC',
+               :conditions => ["site_visitor_id = ?", parent_id ]) 
+    end 
   end
 
   def SiteVisitor.generate_unique_cookie
