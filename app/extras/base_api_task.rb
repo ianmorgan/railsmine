@@ -2,7 +2,7 @@ class BaseApiTask
 
   def do_import(*args)
     options = args.extract_options!
-    options[:name]
+    
     counter = 0
     puts "Removing existing docs"
     Document.find_all_by_source(options[:name]).each do |doc|
