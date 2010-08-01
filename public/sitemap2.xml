@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>http://www.railsmine.com/rails_api/classes/ActionController/Base.html</loc>
+    <lastmod>2010-07-30T05:16:11Z</lastmod>
+  </url>
+   <url>
+      <loc>http://www.railsmine.com/rails_api/classes/ActionController/Request</loc>
+      <lastmod>2010-07-30T05:16:11Z</lastmod>
+    </url>
+  <url>
+       <loc>http://www.railsmine.com/rails_api/classes/ActionController/Routing.html</loc>
+       <lastmod>2010-07-30T05:16:11Z</lastmod>
+  </url>
+  <url>
+        <loc>http://www.railsmine.com/rails_api/classes/ActiveRecord/Base.html</loc>
+        <lastmod>2010-07-30T05:16:11Z</lastmod>
+   </url>
+ 
+ 
+</urlset>
